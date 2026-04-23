@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#2c1810" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Refleco" />
+  <title>Refleco — Personal Journal</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SETUP SCREEN -->
+  <div id="view-setup" class="view-setup hidden">
+    <div class="setup-cover">
+      <div class="setup-emboss">
+        <div class="setup-title-wrap">
+          <span class="setup-ornament">❧</span>
+          <h1 class="setup-book-title">Refleco</h1>
+          <p class="setup-book-sub">A journal of your own</p>
+          <span class="setup-ornament flip">❧</span>
+        </div>
+      </div>
+      <div class="setup-actions">
+        <p class="setup-prompt">Where shall your journal be kept?</p>
+        <button id="btn-setup-new" class="setup-btn">
+          <span>Begin a new journal</span>
+          <small>Choose where to save your file</small>
+        </button>
+        <button id="btn-setup-existing" class="setup-btn">
+          <span>Continue existing journal</span>
+          <small>Open a previous folio.json</small>
+        </button>
+        <button id="btn-setup-skip" class="setup-skip">Use browser storage for now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERMISSION BANNER -->
+  <div id="perm-banner" class="perm-banner hidden">
+    <span>Your journal file needs access</span>
+    <button id="btn-grant-perm">Allow</button>
+  </div>
+
+  <!-- BOOK WRAPPER -->
+  <div id="book-wrap" class="book-wrap hidden">
+
+    <div id="file-status" class="file-status">...</div>
+
+    <div id="book" class="book">
+
+      <!-- COVER -->
+      <div class="page cover-page active" data-index="0">
+        <div class="cover-inner">
+          <div class="cover-decoration top"></div>
+          <div class="cover-content">
+            <div class="cover-ornament">❧</div>
+            <h1 class="cover-title">Refleco</h1>
+            <div class="cover-rule"></div>
+            <p class="cover-subtitle">A journal of wisdom<br/>& reflection</p>
+
+            <!--  FIX: stats added -->
+            <p class="cover-stats">
+              <span id="cover-entry-count">0</span> entries · 
+              <span id="cover-page-count">0</span> pages
+            </p>
+
+            <p class="cover-hint">Swipe to open →</p>
+          </div>
+          <div class="cover-decoration bottom"></div>
+        </div>
+      </div>
+
+      <!-- PAGES -->
+      <div id="pages-container"></div>
+
+    </div>
+
+    <div id="page-indicator" class="page-indicator"></div>
+
+  </div>
+
+  <!-- ADD ENTRY MODAL -->
+  <div id="modal-add" class="modal-overlay hidden">
+    <div class="modal-paper">
+      <div class="modal-header">
+        <h3 class="modal-title">New entry</h3>
+        <button id="modal-close" class="modal-close">✕</button>
+      </div>
+
+      <div class="modal-date" id="modal-date"></div>
+
+      <textarea id="entry-textarea" class="entry-textarea" rows="8"
+        placeholder="Write what you wish to remember…"></textarea>
+
+      <!--  FIX: char counter added -->
+      <div class="char-count-wrap">
+        <span id="char-count">0</span> characters
+      </div>
+
+      <div class="modal-actions">
+        <button id="btn-cancel-entry" class="btn-cancel">Discard</button>
+        <button id="btn-save-entry" class="btn-save">Write it in</button>
+      </div>
+    </div>
+  </div>
+
+  <!--  FIX: EDIT MODAL (missing completely before) -->
+  <div id="modal-edit" class="modal-overlay hidden">
+    <div class="modal-paper">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit entry (<span class="char-count-block"><span id="edit-char-count">0</span> characters</span>)</h3>
+        <button id="edit-modal-close" class="modal-close">✕</button>
+      </div>
+
+      <textarea id="edit-textarea" class="entry-textarea" rows="8"></textarea>
+
+      <div class="modal-actions">
+        <button id="btn-cancel-edit" class="btn-cancel">Cancel</button>
+        <button id="btn-save-edit" class="btn-save">Save</button>
+        <button id="btn-delete-entry" class="btn-delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
