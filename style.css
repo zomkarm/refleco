@@ -662,3 +662,15 @@ body::before {
   font-size: 12px;
   font-family: mono-serif;
 }
+
+.edit-text-btn{
+  font-size: 13px;
+  font-family: mono-serif;
+  padding:2px;
+  border: 1px solid var(--page-line);
+  border-radius: 20%;
+  color: var(--font-body);
+  margin-right:8px;
+  cursor: pointer;
+  font-weight: bold;
+}

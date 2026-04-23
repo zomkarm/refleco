@@ -250,7 +250,7 @@ function buildPage(entries, pageIdx) {
   }
 
   // Edit/delete on entry tap
-  div.querySelectorAll('.entry-block').forEach(el => {
+  div.querySelectorAll('.edit-text-btn').forEach(el => {
     el.addEventListener('click', e => {
       e.stopPropagation();
       const id = el.dataset.id;
@@ -263,8 +263,8 @@ function buildPage(entries, pageIdx) {
 
 function buildEntryHTML(entry) {
   return `
-    <div class="entry-block" data-id="${entry.id}" title="Tap to edit or delete">
-      <div class="entry-date">${formatDateTime(entry.date)}</div>
+    <div class="entry-block" >
+      <div class="entry-date"> <div data-id="${entry.id}" title="Tap to edit or delete" class="edit-text-btn">Edit</div>${formatDateTime(entry.date)}</div>
       <div class="entry-text">${escHtml(entry.text)}</div>
     </div>
   `;
